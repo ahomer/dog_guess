@@ -1,4 +1,4 @@
-# Disaster Response Pipeline Project
+# Data Scientist Nanodegree - Capstone Project
 
 ### Prerequisites
 
@@ -15,21 +15,13 @@ pip install tqdm
 ```
 
 ### Contents
-app/run.py                 -- Render a website to view model data <br>
-models/train_classifier.py -- Train a multiple classifier model <br>
-data/process_data.py       -- Load and clean data
+app/run.py                      -- Website for find dog's breed <br>
+models/weights.best.VGG19.hdf5  -- Pre-traind VGG19 modle file for dog's breed classifying <br>
+data/test_images                -- Test images,you can upload these images to check the model
 
 
 ### Instructions
-1. Run the following commands in the project's root directory to set up your database and model.
-
-    - To run ETL pipeline that cleans data and stores in database
-
-        `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
-
-    - To run ML pipeline that trains classifier and saves
-
-        `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
+1. Install the python packages.
 
 2. Run the following command in the app's directory to run your web app.
 
