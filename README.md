@@ -8,12 +8,10 @@ Then you should install these packages listed below using pip:
 ```
 pip install matplotlib
 pip install pandas 
-pip install SQLAlchemy 
-pip install nltk 
+pip install keras 
 pip install scikit-learn
 pip install Flask
-pip install plotly
-pip install jupyter 
+pip install tqdm
 ```
 
 ### Contents
@@ -37,7 +35,7 @@ data/process_data.py       -- Load and clean data
 
     `python run.py`
 
-3. Go to http://0.0.0.0:3001/
+3. Go to http://127.0.0.0:3001/
 
 
 # Acknowledgements
@@ -46,4 +44,4 @@ Thanks to Udacity(https://udacity.com ).I have followed the of machine learning 
 
 # License
 
-This project is licensed under the terms of the MIT license. See [LICENSE](https://github.com/ahomer/disaster_f8/blob/master/LICENSE) for additional details.
+This project is licensed under the terms of the MIT license. See [LICENSE](https://github.com/ahomer/dog_guess/blob/master/LICENSE) for additional details.
