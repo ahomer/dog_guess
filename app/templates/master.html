@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Find Dog's Name</title>
+    <title>Find Dog's Breed</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -37,17 +37,17 @@
     <div class="jumbotron">
         <div class="container">
             <h1 class="text-center">Dog guess</h1>
-            <p class="text-center">Try to find the dog breed for you.</p>
+            <p class="text-center">Try to find the dog's breed for you.</p>
             <hr />
 
             <div class="row">
                 <div class="col-lg-12 form-group-lg">
                     <form enctype="multipart/form-data">
                         <input type="file" class="form-control form-control-lg" name="query" id="input_file" accept="image/*"
-                            onchange="javascript:setImagePreview();" placeholder="Upload a dog image to get its name.">
+                            onchange="javascript:setImagePreview();" placeholder="Upload a dog image to get its breed.">
                         <br>
                         <div class="col-lg-offset-5">
-                            <button type="button" class="btn btn-lg btn-success" onclick='javascript:upload()'>Find Dog's Name</button>
+                            <button type="button" class="btn btn-lg btn-success" onclick='javascript:upload()'>Find Dog's Breed</button>
                         </div>
                     </form>
                     <iframe name="uploadfrm" id="uploadfrm" style="display: none;"></iframe>  
@@ -83,7 +83,7 @@
             success: function (data) {
                 var rs = eval("("+data+")");
                 $.messager.show({
-                    title:"Dog's Name",
+                    title:"Dog's Breed",
                     msg:rs.breed,
                     timeout:5000,
                     showType:'slide'
