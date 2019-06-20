@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Find Dog's Name</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+    
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Dog guess -  Data Scientist Nanodegree</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="https://www.udacity.com/">Power by Udacity</a></li>
+                    <li><a href="https://github.com/ahomer">Contact Me</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="text-center">Dog guess</h1>
+            <p class="text-center">Try to find the dog breed for you.</p>
+            <hr />
+
+            <div class="row">
+                <div class="col-lg-12 form-group-lg">
+                    <form enctype="multipart/form-data">
+                        <input type="file" class="form-control form-control-lg" name="query" id="input_file" accept="image/*"
+                            onchange="javascript:setImagePreview();" placeholder="Upload a dog image to get its name.">
+                        <br>
+                        <div class="col-lg-offset-5">
+                            <button type="button" class="btn btn-lg btn-success" onclick='javascript:upload()'>Find Dog's Name</button>
+                        </div>
+                    </form>
+                    <iframe name="uploadfrm" id="uploadfrm" style="display: none;"></iframe>  
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div data-role="fieldcontain">  
+                    <div id="localImag">  
+                        <img id="preview" width="-1" height="-1" style="display: none" />  
+                    </div>  
+                </div> 
+            </div> 
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    function upload(){
+        if($('#input_file')[0].files.length == 0)
+        {
+            return;
+        }
+        var formData = new FormData(); 
+        formData.append('file', $('#input_file')[0].files[0]);
+        $.ajax({
+            url: '/go',
+            type: 'POST',
+            cache: false, 
+            data: formData,
+            processData: false, 
+            contentType: false, 
+            success: function (data) {
+                var rs = eval("("+data+")");
+                $.messager.show({
+                    title:"Dog's Name",
+                    msg:rs.breed,
+                    timeout:5000,
+                    showType:'slide'
+                });
+            },
+            error: function (data) {
+                $.messager.show({
+                        title:'Error',
+                        msg:'upload fail',
+                        timeout:1000,
+                        showType:'show'
+                    });
+            }
+        })  
+    }
+
+    function setImagePreview() 
+    {  
+        var preview, img_txt, localImag, file_head = document.getElementById("input_file"),  
+        picture = file_head.value;  
+        if (preview = document.getElementById("preview"), file_head.files && file_head.files[0]) preview.style.display = "block",  
+            preview.style.width = "224px",  
+            preview.style.height = "224px",  
+            preview.src = window.navigator.userAgent.indexOf("Chrome") >= 1 || window.navigator.userAgent.indexOf("Safari") >= 1 ? window.webkitURL.createObjectURL(file_head.files[0]) : window.URL.createObjectURL(file_head.files[0]);  
+        else {  
+            file_head.select(),  
+            file_head.blur(),  
+            img_txt = document.selection.createRange().text,  
+            localImag = document.getElementById("localImag"),  
+            localImag.style.width = "224px",  
+            localImag.style.height = "224px";  
+            try {  
+                localImag.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)",  
+                localImag.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = img_txt  
+            } catch(f) {  
+                return alert("Something wrong,please check."),  
+                !1  
+            }  
+            preview.style.display = "none",  
+            document.selection.empty()  
+        }  
+    }  
+    </script>
+
+</body>
+
+</html>
