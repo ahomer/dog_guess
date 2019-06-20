@@ -29,6 +29,8 @@ data/test_images                -- Test images,you can upload these images to ch
 
 3. Go to http://127.0.0.0:3001/
 
+4. Upload a dog's image and click 'Find Dog's Breed' button,then you will get the dog's breed
+
 
 # Acknowledgements
 Thanks to Udacity(https://udacity.com ).I have followed the of machine learning pipeline courses(ud025).This is one of project of the Data Scientist Nanodegree.
